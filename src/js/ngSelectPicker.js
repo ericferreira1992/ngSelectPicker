@@ -1,5 +1,5 @@
 /*!
- * ngSelectPicker v1.0.1
+ * ngSelectPicker v1.0.2
  * Copyright 2016 Eric Ferreira
  * Contato: ericferreira1992@gmail.com
  */
@@ -42,18 +42,37 @@
                 /* --- LISTNERS --- */
                 angular.element(document).bind('click', function(event){
                     //Verifica se clicou num elemento dentro do combo
-                    if (element.find(event.target).length > 0)
-                        return;
-
-                    scope.$apply(function(){
-                        scope.showCombo = 0;
-                    });
-                });
-                angular.element(document).bind('keyup', function(event){
-                    if(event.keyCode == 27 && scope.showCombo == 1)
+                    if (element.find(event.target).length > 0) {
                         scope.$apply(function(){
+                            scope.clicouDentro = true;
+                        });
+                    }
+                    else{
+                        scope.$apply(function(){
+                            scope.clicouDentro = false;
                             scope.showCombo = 0;
                         });
+                    }
+                });
+                angular.element(document).bind('keypress', function(event){
+                    if(scope.clicouDentro && scope.showCombo == 1){
+                        element.find('input').focus();
+                    }
+                });
+                angular.element(document).bind('keyup', function(event){
+                    if(scope.clicouDentro){
+                        if(event.keyCode == 27 && scope.showCombo == 1)
+                            scope.$apply(function(){
+                                scope.showCombo = 0;
+                            });
+                        else if(event.keyCode == 46 && scope.showCombo != 1)
+                            scope.$apply(function(){
+                                scope.checados = [];
+                                scope.todosChecked = false;
+                            });
+                        if(event.keyCode == 8)
+                            element.find('input').focus();
+                    }
                 });
 
                 scope.inicializa = function(){
@@ -62,6 +81,7 @@
                     scope.filtroInput = '';
                     scope.todosChecked = false;
                     scope.showCombo = -1;
+                    scope.clicouDentro = true;
 
                     $timeout(function(){
                         var optionsDiv = element[0].children[0].children[1].children[1].children[1];
@@ -93,7 +113,7 @@
                     else
                         scope.filtro = false;
 
-                    if(attrs.todosNome == undefined || attrs.todosNome != '')
+                    if(attrs.todosNome != undefined && attrs.todosNome != '')
                         scope.todosNome = attrs.todosNome;
                     else
                         scope.todosNome = 'Todos';
