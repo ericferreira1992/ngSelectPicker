@@ -28,7 +28,7 @@ Attributes (optional)	| Description
 ```
 
 ### Example usage
-# HTML
+#### HTML
 ```html
     <form ng-submit="sendForm()">
         <div class="form-group">
@@ -40,5 +40,5 @@ Attributes (optional)	| Description
         <button>Send</button>
     </form>
 ```
-#Result
-![alt tag](https://s23.postimg.org/mgyp807nf/ng_Select_Picker.gif)
+#### Result
+![alt tag](https://s24.postimg.org/h77sja4ud/ng_Select_Picker.gif)

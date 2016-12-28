@@ -1,5 +1,5 @@
 /*!
- * ngSelectPicker v1.0.0
+ * ngSelectPicker v1.0.1
  * Copyright 2016 Eric Ferreira
  * Contato: ericferreira1992@gmail.com
  */
@@ -25,7 +25,7 @@
                             '</div>'+
                             '<div class="selectpicker-combo-itens">'+
                                 '<div class="selectpicker-combo-item" ng-click="toggleTodos()">'+
-                                    '<div><strong>Todos</strong></div>'+
+                                    '<div><strong>{{todosNome}}</strong></div>'+
                                     '<div><i class="fa" ng-class="{\'fa-check\': todosChecked}"></i></div>'+
                                 '</div>'+
                                 '<div ng-transclude></div>'+
@@ -93,6 +93,11 @@
                     else
                         scope.filtro = false;
 
+                    if(attrs.todosNome == undefined || attrs.todosNome != '')
+                        scope.todosNome = attrs.todosNome;
+                    else
+                        scope.todosNome = 'Todos';
+
                     scope.$watch('ngModel',function(v){
                         scope.checados = (v != undefined) ? v : [];
                     },true);
@@ -142,12 +147,16 @@
     .filter('joinSelectPicker', function () {
         return function (input)
         {
-            var listaJoined = '';
-            for(var i = 0; i < input.length; i++){
-                listaJoined += (listaJoined == '' ? '' : ', ') + input[i].texto;
-            };
+            if(input != undefined && input != null)
+            {
+                var listaJoined = '';
+                for(var i = 0; i < input.length; i++){
+                    listaJoined += (listaJoined == '' ? '' : ', ') + input[i].texto;
+                };
 
-            return listaJoined;
+                return listaJoined;
+            }
+            return '';
         }
     });
 })();
