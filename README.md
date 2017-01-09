@@ -3,6 +3,9 @@ Library for Angular Js, with the purpose of selecting multiple options, being ab
 
 ---
 
+#### Result
+![alt tag](https://s24.postimg.org/h77sja4ud/ng_Select_Picker.gif)
+
 ### Install (gitHub)
 ```
 git clone https://github.com/ericferreira1992/ngSelectPicker
@@ -40,5 +43,7 @@ Attributes (optional)	| Description
         <button>Send</button>
     </form>
 ```
-#### Result
-![alt tag](https://s24.postimg.org/h77sja4ud/ng_Select_Picker.gif)
+
+[Donate to help](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ericferreira1992%40gmail%2ecom&lc=BR&item_name=Eric%20Github&currency_code=BRL&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+
+[Send email to support](ericferreira1992@gmail.com)
